@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SnowTamTam</string>
+    <string name="latest_groups">Derniers Groupes</string>
+    <string name="search">Rechercher</string>
+    <string name="placeholder">Placeholder</string>
+    <string name="title_activity_show_airport_group">Groupe</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
+    <string name="title_activity_search">Rechercher</string>
+</resources>

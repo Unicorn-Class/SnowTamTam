@@ -3,7 +3,8 @@
     <string name="latest_groups">Latest Airport Groups</string>
     <string name="search">Search</string>
     <string name="placeholder">Placeholder</string>
-    <string name="title_activity_show_airport_group">ShowAirportGroup</string>
+    <string name="title_activity_show_airport_group">Show Airport Group</string>
     <string name="tab_text_1">Tab 1</string>
     <string name="tab_text_2">Tab 2</string>
+    <string name="title_activity_search">Search</string>
 </resources>
