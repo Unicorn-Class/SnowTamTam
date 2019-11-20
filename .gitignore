@@ -12,3 +12,9 @@
 /captures
 .externalNativeBuild
 .cxx
+
+\.idea/vcs\.xml
+
+\.idea/misc\.xml
+
+\.idea/
