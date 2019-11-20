@@ -13,10 +13,16 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.mapbox.mapboxsdk.Mapbox;
+import com.mapbox.mapboxsdk.annotations.MarkerOptions;
+import com.mapbox.mapboxsdk.camera.CameraPosition;
+import com.mapbox.mapboxsdk.camera.CameraUpdateFactory;
+import com.mapbox.mapboxsdk.geometry.LatLng;
 import com.mapbox.mapboxsdk.maps.MapView;
 import com.mapbox.mapboxsdk.maps.MapboxMap;
 import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
 import com.mapbox.mapboxsdk.maps.Style;
+
+import java.util.ArrayList;
 
 import fr.unicornclass.snowtamtam.R;
 
@@ -67,12 +73,13 @@ public class PlaceholderFragment extends Fragment {
             }
         });
 
+
         mapView = (MapView) root.findViewById(R.id.mapView);
         mapView.onCreate(savedInstanceState);
         mapView.getMapAsync(new OnMapReadyCallback() {
             @Override
             public void onMapReady(@NonNull MapboxMap mapboxMap) {
-                mapboxMap.setStyle(Style.MAPBOX_STREETS, new Style.OnStyleLoaded() {
+                mapboxMap.setStyle(Style.OUTDOORS, new Style.OnStyleLoaded() {
                     @Override
                     public void onStyleLoaded(@NonNull Style style) {
 
@@ -81,6 +88,10 @@ public class PlaceholderFragment extends Fragment {
 
                     }
                 });
+                double lat = 49.007951;
+                double longi = 2.542880;
+                mapboxMap.animateCamera(CameraUpdateFactory.newCameraPosition(new CameraPosition.Builder().target(new LatLng(lat,longi)).zoom(13).build()), 5000);
+                mapboxMap.addMarker(new MarkerOptions().position(new LatLng(lat, longi)).title("LFPG"));
             }
         });
 

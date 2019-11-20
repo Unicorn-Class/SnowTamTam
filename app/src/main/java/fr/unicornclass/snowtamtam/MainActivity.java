@@ -1,6 +1,7 @@
 package fr.unicornclass.snowtamtam;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,8 +21,17 @@ public class MainActivity extends AppCompatActivity {
         searchFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            Intent intent = new Intent(getApplicationContext(),ShowAirportGroup.class);
+            Intent intent = new Intent(getApplicationContext(),Search.class);
             startActivity(intent);
+            }
+        });
+
+        CardView card = findViewById(R.id.card);
+        card.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),ShowAirportGroup.class);
+                startActivity(intent);
             }
         });
     }
