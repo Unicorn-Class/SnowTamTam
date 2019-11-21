@@ -1,5 +1,16 @@
 package model;
 
+import android.content.Context;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.io.InputStream;
+
+
+
 /**
  * Our representation of an airport
  * @author Victor Morgant
@@ -27,13 +38,43 @@ public class Airport {
         this.longitude = longitude;
     }
 
-    public Airport(String oaci) {
+    public Airport(String oaci,Context context) {
         this.oaciCode=oaci;
-        getAirportFromOACI(oaci);
+        JSONObject airport = getAirportFromOACI(oaci,context);
+        this.oaciCode=oaci;
+        try {
+            this.name=airport.getString("Name");
+            this.country=airport.getString("Country");
+            this.latitude=(float)airport.getDouble("Latitude");
+            this.longitude=(float)airport.getDouble("Longitude");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
-    private void getAirportFromOACI(String oaci) {
-        /*TODO parse oaci to get airport information*/
+    private JSONObject getAirportFromOACI(String oaci,Context context) {
+        try {
+            InputStream is = context.getAssets().open("names.json");
+            int size = is.available();
+            byte[] buffer = new byte[size];
+            is.read(buffer);
+            is.close();
+            String json = new String(buffer, "UTF-8");
+            JSONArray aiportList = new JSONArray(json);
+            for (int i = 0; i < aiportList.length(); i++) {
+                // create a JSONObject for fetching single user data
+                JSONObject airport = aiportList.getJSONObject(i);
+                if(airport.getString("ICAO").matches(oaci)){
+                    return airport;
+                }
+
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public String getOaciCode() {

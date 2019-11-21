@@ -1,5 +1,7 @@
 package model;
 
+import android.content.Context;
+
 /**
  * Our representation of a SNOWTAM
  * @author Victor Morgant
@@ -45,10 +47,10 @@ public class Snowtam {
         this.runway = runway;
     }
 
-    public Snowtam(String codedSnowtam) {
+    public Snowtam(String codedSnowtam, Context context) {
 
         String[] parsedSnowtam = codedSnowtam.split("\\)");
-        this.placeAirport=new Airport(parsedSnowtam[1]);
+        this.placeAirport=new Airport(parsedSnowtam[1],context);
         this.ObservationDate=parsedSnowtam[2];
         this.runway=new Runway(parsedSnowtam[3]);
     }
