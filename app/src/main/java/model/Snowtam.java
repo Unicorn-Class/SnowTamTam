@@ -49,7 +49,7 @@ public class Snowtam {
 
     public Snowtam(String codedSnowtam, Context context) {
 
-        String[] parsedSnowtam = codedSnowtam.split("\\)");
+        String[] parsedSnowtam = codedSnowtam.split("(?=\\) )",3);
         this.placeAirport=new Airport(parsedSnowtam[1],context);
         this.ObservationDate=parsedSnowtam[2];
         this.runway=new Runway(parsedSnowtam[3]);

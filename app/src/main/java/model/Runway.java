@@ -1,5 +1,10 @@
 package model;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 class Runway {
     String id;
     String clearedRunwayLength;
@@ -35,7 +40,23 @@ class Runway {
     }
 
     public Runway(String codedRunway) {
-        /*TODO parse coded Runway to extract information*/
+        Map<String, String> SnowtamInfo = new HashMap<>();
+        String pattern ="(?=\\) )";
+        Pattern r = Pattern.compile(pattern);
+        Matcher m = r.matcher(codedRunway);
+        while (m.find()) {
+            SnowtamInfo.put(m.group(1), m.group(2));
+        }
+        this.id = SnowtamInfo.get("C)");
+        this.clearedRunwayLength = SnowtamInfo.get("D)");
+        this.clearedRunwayWidth = SnowtamInfo.get("E)");
+        this.condition = SnowtamInfo.get("F)");
+        this.thickness = SnowtamInfo.get("G)");
+        this.frictionCoefficient = SnowtamInfo.get("H)");
+        this.criticalDrift = SnowtamInfo.get("J");
+        this.obscuredLimelight = SnowtamInfo.get("K");
+        this.nextClearing = SnowtamInfo.get("L");
+
     }
 
     public String getId() {
