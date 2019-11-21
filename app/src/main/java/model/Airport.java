@@ -8,7 +8,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;
-
+import java.io.Serializable;
 
 
 /**
@@ -16,12 +16,12 @@ import java.io.InputStream;
  * @author Victor Morgant
  * @version 1.O
  */
-public class Airport {
+public class Airport implements Serializable {
     private String oaciCode;
     private String name;
     private String country;
-    private float latitude;
-    private float longitude;
+    private double latitude;
+    private double longitude;
 
     /**
      * @param oaciCode the OACI code of the airport should be 4 letters
@@ -30,7 +30,7 @@ public class Airport {
      * @param latitude the latitude of the airport
      * @param longitude the longitude of the airport
      */
-    public Airport(String oaciCode, String name, String country, float latitude, float longitude) {
+    public Airport(String oaciCode, String name, String country, double latitude, double longitude) {
         this.oaciCode = oaciCode;
         this.name = name;
         this.country = country;
@@ -101,7 +101,7 @@ public class Airport {
         this.country = country;
     }
 
-    public float getLatitude() {
+    public double getLatitude() {
         return latitude;
     }
 
@@ -109,7 +109,7 @@ public class Airport {
         this.latitude = latitude;
     }
 
-    public float getLongitude() {
+    public double getLongitude() {
         return longitude;
     }
 

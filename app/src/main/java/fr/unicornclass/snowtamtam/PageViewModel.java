@@ -1,4 +1,4 @@
-package fr.unicornclass.snowtamtam.ui.main;
+package fr.unicornclass.snowtamtam;
 
 import androidx.arch.core.util.Function;
 import androidx.lifecycle.LiveData;

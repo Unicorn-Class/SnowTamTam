@@ -8,4 +8,5 @@
     <string name="tab_text_2">Tab 2</string>
     <string name="title_activity_search">Search</string>
     <string name="searchByOACI">Search by OACI Code</string>
+    <string name="title_activity_raw_snowtam">RawSnowtam</string>
 </resources>

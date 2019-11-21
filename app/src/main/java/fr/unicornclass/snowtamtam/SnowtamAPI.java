@@ -95,7 +95,7 @@ public class SnowtamAPI {
                 params2.put("AERO_CM_INFO_COMP", "1");
                 params2.put("AERO_Rayon", "10");
                 params2.put("AERO_Plafond", "30");
-                params2.put("AERO_Tab_Aero[0]", "ENGM");
+                params2.put("AERO_Tab_Aero[0]", oaciCode);
                 return params2;
             }
 
