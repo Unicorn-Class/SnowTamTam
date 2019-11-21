@@ -62,7 +62,6 @@ public class Airport implements Serializable {
             String json = new String(buffer, "UTF-8");
             JSONArray aiportList = new JSONArray(json);
             for (int i = 0; i < aiportList.length(); i++) {
-                // create a JSONObject for fetching single user data
                 JSONObject airport = aiportList.getJSONObject(i);
                 if(airport.getString("ICAO").matches(oaci)){
                     return airport;
