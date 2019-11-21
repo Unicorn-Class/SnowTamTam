@@ -5,6 +5,7 @@ import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -21,8 +22,14 @@ public class MainActivity extends AppCompatActivity {
         searchFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            Intent intent = new Intent(getApplicationContext(),Search.class);
-            startActivity(intent);
+                SnowtamAPI.getSnowtamAPI().getSnowtam("ENGM", getApplicationContext(), new VolleyCallback() {
+                    @Override
+                    public void onSuccess(String result) {
+                        Log.d("Snowtam",result);
+                    }
+                });
+                //Intent intent = new Intent(getApplicationContext(),Search.class);
+                //startActivity(intent);
             }
         });
 
