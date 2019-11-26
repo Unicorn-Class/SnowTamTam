@@ -15,6 +15,7 @@ class Runway {
     String criticalDrift;
     String obscuredLimelight;
     String nextClearing;
+    String other;
 
     /**
      * @param id the identifier of the runway
@@ -27,7 +28,7 @@ class Runway {
      * @param obscuredLimelight
      * @param nextClearing the next part which will be cleaned
      */
-    public Runway(String id, String clearedRunwayLength, String clearedRunwayWidth, String condition, String thickness, String frictionCoefficient, String criticalDrift, String obscuredLimelight, String nextClearing) {
+    public Runway(String id, String clearedRunwayLength, String clearedRunwayWidth, String condition, String thickness, String frictionCoefficient, String criticalDrift, String obscuredLimelight, String nextClearing,String other) {
         this.id = id;
         this.clearedRunwayLength = clearedRunwayLength;
         this.clearedRunwayWidth = clearedRunwayWidth;
@@ -37,6 +38,7 @@ class Runway {
         this.criticalDrift = criticalDrift;
         this.obscuredLimelight = obscuredLimelight;
         this.nextClearing = nextClearing;
+        this.other=other;
     }
 
     public Runway(String codedRunway) {
@@ -50,15 +52,30 @@ class Runway {
         this.id = SnowtamInfo.get("C)");
         this.clearedRunwayLength = SnowtamInfo.get("D)");
         this.clearedRunwayWidth = SnowtamInfo.get("E)");
-        this.condition = SnowtamInfo.get("F)");
+        this.condition = decodeCondition(SnowtamInfo.get("F)"));
         this.thickness = SnowtamInfo.get("G)");
-        this.frictionCoefficient = SnowtamInfo.get("H)");
+        this.frictionCoefficient = decodeFriction(SnowtamInfo.get("H)"));
         this.criticalDrift = SnowtamInfo.get("J");
         this.obscuredLimelight = SnowtamInfo.get("K");
         this.nextClearing = SnowtamInfo.get("L");
+        this.other=SnowtamInfo.get("T");
 
     }
-
+    public String decodeCondition(String coded){
+        String condition ="";
+        String[] parsedCondition=coded.split("/");
+        for(String part:parsedCondition){
+            for(int value : part.toCharArray()){
+                String state=Condition.values()[value].name();
+                condition.concat(state);
+            }
+        }
+        return condition;
+    }
+    public String decodeFriction(String coded){
+        int value= Integer.parseInt(coded);
+        return Friction.values()[value].name();
+    }
     public String getId() {
         return id;
     }

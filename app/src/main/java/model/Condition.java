@@ -2,14 +2,13 @@ package model;
 
 public enum Condition {
 
-        clear,
-        damp ,
-        wet ,
-        rime,
-        wetSnow,
-        slush,
-        ice,
-        compacted,
-        frozenRuts
-    ;
+        CLEAR,
+        DAMP ,
+        WET ,
+        RIME,
+        WETSNOW,
+        SLUSH,
+        ICE,
+        COMPACTED,
+        FROZENRUTS
 }
