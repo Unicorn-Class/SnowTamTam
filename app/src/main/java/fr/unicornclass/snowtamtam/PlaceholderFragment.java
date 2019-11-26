@@ -2,6 +2,7 @@ package fr.unicornclass.snowtamtam;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,7 @@ import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
 import com.mapbox.mapboxsdk.maps.Style;
 
 import model.Airport;
+import model.Snowtam;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -103,9 +105,12 @@ public class PlaceholderFragment extends Fragment {
                     SnowtamAPI.getSnowtamAPI().getSnowtam(airport.getOaciCode(), root.getContext(), new VolleyCallback() {
                         @Override
                         public void onSuccess(String result) {
-                            TextView t = root.findViewById(R.id.snowtam);
-                            snowtam = result;
-                            t.setText(snowtam);
+                            Log.d("SNOWTAM",result);
+                            if (!result.equals("")){
+                                Snowtam s = new Snowtam(result,root.getContext());
+                                snowtam = result;
+                                refreshSnowtam(s,root);
+                            }
                             swp.setRefreshing(false);
                         }
                     });
@@ -119,9 +124,12 @@ public class PlaceholderFragment extends Fragment {
                 SnowtamAPI.getSnowtamAPI().getSnowtam(airport.getOaciCode(), root.getContext(), new VolleyCallback() {
                     @Override
                     public void onSuccess(String result) {
-                        TextView t = root.findViewById(R.id.snowtam);
-                        snowtam = result;
-                        t.setText(snowtam);
+                        Log.d("SNOWTAM",result);
+                        if (!result.equals("")){
+                            Snowtam s = new Snowtam(result,root.getContext());
+                            snowtam = result;
+                            refreshSnowtam(s,root);
+                        }
                         swp.setRefreshing(false);
                     }
                 });
@@ -158,5 +166,10 @@ public class PlaceholderFragment extends Fragment {
     public void onLowMemory() {
         super.onLowMemory();
         mapView.onLowMemory();
+    }
+
+    public void refreshSnowtam(Snowtam s, final View v) {
+        TextView date = v.findViewById(R.id.dateHour);
+        date.setText(s.getObservationDate());
     }
 }

@@ -5,8 +5,17 @@
     <string name="search">Rechercher</string>
     <string name="placeholder">Placeholder</string>
     <string name="title_activity_show_airport_group">Groupe</string>
-    <string name="tab_text_1">Tab 1</string>
-    <string name="tab_text_2">Tab 2</string>
     <string name="title_activity_search">Rechercher</string>
     <string name="searchByOACI">Rechercher par code OACI</string>
+    <string name="title_activity_raw_snowtam">Snowtam Brut</string>
+    <string name="month_April">Avril</string>
+    <string name="month_August">Août</string>
+    <string name="month_December">Décembre</string>
+    <string name="month_February">Février</string>
+    <string name="month_January">Janvier</string>
+    <string name="month_July">Juillet</string>
+    <string name="month_June">Juin</string>
+    <string name="month_March">Mars</string>
+    <string name="month_May">Mai</string>
+    <string name="date_At">À</string>
 </resources>

@@ -4,9 +4,20 @@
     <string name="search">Search</string>
     <string name="placeholder">Placeholder</string>
     <string name="title_activity_show_airport_group">Show Airport Group</string>
-    <string name="tab_text_1">Tab 1</string>
-    <string name="tab_text_2">Tab 2</string>
     <string name="title_activity_search">Search</string>
     <string name="searchByOACI">Search by OACI Code</string>
-    <string name="title_activity_raw_snowtam">RawSnowtam</string>
+    <string name="title_activity_raw_snowtam">Raw Snowtam</string>
+    <string name="month_January">January</string>
+    <string name="month_February">February</string>
+    <string name="month_March">March</string>
+    <string name="month_April">April</string>
+    <string name="month_May">May</string>
+    <string name="month_June">June</string>
+    <string name="month_July">July</string>
+    <string name="month_August">August</string>
+    <string name="month_September">September</string>
+    <string name="month_October">October</string>
+    <string name="month_November">November</string>
+    <string name="month_December">December</string>
+    <string name="date_At">At</string>
 </resources>

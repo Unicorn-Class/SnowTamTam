@@ -1,6 +1,7 @@
 package model;
 
 import android.content.Context;
+import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -42,6 +43,7 @@ public class Airport implements Serializable {
         this.oaciCode=oaci;
         JSONObject airport = getAirportFromOACI(oaci,context);
         this.oaciCode=oaci;
+        Log.d("OACI Code",this.oaciCode);
         try {
             this.name=airport.getString("Name");
             this.country=airport.getString("Country");
@@ -54,7 +56,7 @@ public class Airport implements Serializable {
 
     private JSONObject getAirportFromOACI(String oaci,Context context) {
         try {
-            InputStream is = context.getAssets().open("names.json");
+            InputStream is = context.getAssets().open("airport.json");
             int size = is.available();
             byte[] buffer = new byte[size];
             is.read(buffer);
@@ -63,7 +65,7 @@ public class Airport implements Serializable {
             JSONArray aiportList = new JSONArray(json);
             for (int i = 0; i < aiportList.length(); i++) {
                 JSONObject airport = aiportList.getJSONObject(i);
-                if(airport.getString("ICAO").matches(oaci)){
+                if(airport.getString("ICAO").equals(oaci)){
                     return airport;
                 }
 
