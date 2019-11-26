@@ -110,6 +110,8 @@ public class PlaceholderFragment extends Fragment {
                                 Snowtam s = new Snowtam(result,root.getContext());
                                 snowtam = result;
                                 refreshSnowtam(s,root);
+                            } else {
+
                             }
                             swp.setRefreshing(false);
                         }
@@ -129,6 +131,8 @@ public class PlaceholderFragment extends Fragment {
                             Snowtam s = new Snowtam(result,root.getContext());
                             snowtam = result;
                             refreshSnowtam(s,root);
+                        } else {
+
                         }
                         swp.setRefreshing(false);
                     }

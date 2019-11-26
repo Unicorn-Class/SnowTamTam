@@ -1,9 +1,7 @@
 package model;
 
 import android.content.Context;
-import android.util.ArrayMap;
 import android.util.Log;
-import android.widget.Toast;
 
 import java.util.HashMap;
 
@@ -96,12 +94,6 @@ public class Snowtam {
     }
 
     public Snowtam(String codedSnowtam, Context context) {
-        /*
-        String[] parsedSnowtam = codedSnowtam.split("(?=\\) )",3);
-        this.placeAirport=new Airport(parsedSnowtam[1],context);
-        this.ObservationDate=parsedSnowtam[2];
-        this.runway=new Runway(parsedSnowtam[3]);
-        */
         String[] parsedSnowtam = codedSnowtam.split("\n");
         HashMap<String,String> blocs = new HashMap<String, String>();
         for (int i = 4; i < parsedSnowtam.length; i++){
