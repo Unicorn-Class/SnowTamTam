@@ -1,5 +1,7 @@
 package model;
 
+import android.util.Log;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -41,40 +43,45 @@ class Runway {
         this.other=other;
     }
 
-    public Runway(String codedRunway) {
-        Map<String, String> SnowtamInfo = new HashMap<>();
-        String pattern ="(?=\\) )";
-        Pattern r = Pattern.compile(pattern);
-        Matcher m = r.matcher(codedRunway);
-        while (m.find()) {
-            SnowtamInfo.put(m.group(1), m.group(2));
-        }
+    public Runway(HashMap<String,String> codedRunway) {
+        Map<String, String> SnowtamInfo = codedRunway;
         this.id = SnowtamInfo.get("C)");
         this.clearedRunwayLength = SnowtamInfo.get("D)");
         this.clearedRunwayWidth = SnowtamInfo.get("E)");
         this.condition = decodeCondition(SnowtamInfo.get("F)"));
         this.thickness = SnowtamInfo.get("G)");
         this.frictionCoefficient = decodeFriction(SnowtamInfo.get("H)"));
-        this.criticalDrift = SnowtamInfo.get("J");
-        this.obscuredLimelight = SnowtamInfo.get("K");
-        this.nextClearing = SnowtamInfo.get("L");
-        this.other=SnowtamInfo.get("T");
+        this.criticalDrift = SnowtamInfo.get("J)");
+        this.obscuredLimelight = SnowtamInfo.get("K)");
+        this.nextClearing = SnowtamInfo.get("L)");
+        this.other=SnowtamInfo.get("T)");
 
     }
     public String decodeCondition(String coded){
+        Log.d("Condition",coded);
         String condition ="";
         String[] parsedCondition=coded.split("/");
         for(String part:parsedCondition){
             for(int value : part.toCharArray()){
-                String state=Condition.values()[value].name();
-                condition.concat(state);
+                String c = Character.toString ((char) value);
+                String state=Condition.values()[Integer.parseInt(c)].name();
+                condition += " "+state;
             }
         }
         return condition;
     }
     public String decodeFriction(String coded){
-        int value= Integer.parseInt(coded);
-        return Friction.values()[value].name();
+        Log.d("Friction",coded);
+        String condition ="";
+        String[] parsedCondition=coded.split("/");
+        for(String part:parsedCondition){
+            for(int value : part.toCharArray()){
+                String c = Character.toString ((char) value);
+                String state=Friction.values()[Integer.parseInt(c)-1].name();
+                condition += " "+state;
+            }
+        }
+        return condition;
     }
     public String getId() {
         return id;

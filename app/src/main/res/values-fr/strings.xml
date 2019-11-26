@@ -18,4 +18,7 @@
     <string name="month_March">Mars</string>
     <string name="month_May">Mai</string>
     <string name="date_At">À</string>
+    <string name="month_November">Novembre</string>
+    <string name="month_October">Octobre</string>
+    <string name="month_September">Septembre</string>
 </resources>

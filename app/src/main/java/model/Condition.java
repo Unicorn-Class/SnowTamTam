@@ -1,7 +1,6 @@
 package model;
 
 public enum Condition {
-
         CLEAR,
         DAMP ,
         WET ,

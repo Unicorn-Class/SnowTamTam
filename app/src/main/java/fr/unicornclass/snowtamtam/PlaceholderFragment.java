@@ -170,6 +170,6 @@ public class PlaceholderFragment extends Fragment {
 
     public void refreshSnowtam(Snowtam s, final View v) {
         TextView date = v.findViewById(R.id.dateHour);
-        date.setText(s.getObservationDate());
+        date.setText(s.getObservationDate(v.getContext()));
     }
 }
