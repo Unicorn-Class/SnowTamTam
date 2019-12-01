@@ -21,4 +21,6 @@
     <string name="month_November">Novembre</string>
     <string name="month_October">Octobre</string>
     <string name="month_September">Septembre</string>
+    <string name="dash">-</string>
+    <string name="add">Ajouter</string>
 </resources>

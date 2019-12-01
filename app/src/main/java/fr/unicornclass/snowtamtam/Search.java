@@ -1,9 +1,22 @@
 package fr.unicornclass.snowtamtam;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
+import model.Airport;
 
 public class Search extends AppCompatActivity {
 
@@ -14,6 +27,39 @@ public class Search extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        final EditText searchBar = findViewById(R.id.searchBar);
+        final Context c = getApplicationContext();
+        final CardView card = findViewById(R.id.searchResult);
+        card.setVisibility(View.INVISIBLE);
+        searchBar.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if (searchBar.getText().toString().length() == 4){
+                    try {
+                        Airport airport = new Airport(searchBar.getText().toString().toUpperCase(),c);
+                        TextView oaci = findViewById(R.id.airportOACI);
+                        TextView name = findViewById(R.id.airportFriendlyName);
+                        oaci.setText(airport.getOaciCode());
+                        name.setText(airport.getName());
+                        card.setVisibility(View.VISIBLE);
+                    } catch (Exception e) {
+                        card.setVisibility(View.INVISIBLE);
+                    }
+                } else {
+                    card.setVisibility(View.INVISIBLE);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
     }
 
 }

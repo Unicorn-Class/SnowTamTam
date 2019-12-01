@@ -3,7 +3,9 @@ package fr.unicornclass.snowtamtam;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -34,6 +36,9 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        Context context = this.getApplicationContext();
+        SharedPreferences sharedPref = context.getSharedPreferences("storage", Context.MODE_PRIVATE);
 
         CardView card = findViewById(R.id.card);
         card.setOnClickListener(new View.OnClickListener() {

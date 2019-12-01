@@ -20,4 +20,6 @@
     <string name="month_November">November</string>
     <string name="month_December">December</string>
     <string name="date_At">At</string>
+    <string name="dash">-</string>
+    <string name="add">Add</string>
 </resources>
