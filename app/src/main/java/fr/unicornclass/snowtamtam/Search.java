@@ -6,6 +6,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -16,6 +17,7 @@ import java.util.ArrayList;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import model.Airport;
 
 public class Search extends AppCompatActivity {
@@ -41,11 +43,20 @@ public class Search extends AppCompatActivity {
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 if (searchBar.getText().toString().length() == 4){
                     try {
-                        Airport airport = new Airport(searchBar.getText().toString().toUpperCase(),c);
+                        final Airport airport = new Airport(searchBar.getText().toString().toUpperCase(),c);
                         TextView oaci = findViewById(R.id.airportOACI);
                         TextView name = findViewById(R.id.airportFriendlyName);
                         oaci.setText(airport.getOaciCode());
                         name.setText(airport.getName());
+
+                        Button b = findViewById(R.id.buttonAddToGrp);
+                        b.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+
+                            }
+                        });
+
                         card.setVisibility(View.VISIBLE);
                     } catch (Exception e) {
                         card.setVisibility(View.INVISIBLE);
@@ -60,6 +71,11 @@ public class Search extends AppCompatActivity {
 
             }
         });
+    }
+
+    public void addAirportToGroup(Airport a){
+        ConstraintLayout l = findViewById(R.id.listAirports);
+        CardView card = new CardView(getApplicationContext());
     }
 
 }
