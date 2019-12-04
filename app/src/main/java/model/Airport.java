@@ -58,7 +58,9 @@ public class Airport implements Serializable {
         Log.d("OACI Code",this.oaciCode);
         try {
             this.name=airport.getString("Name");
+
             this.country=airport.getString("Country");
+            Log.d("Aiport country",country);
             this.latitude=(float)airport.getDouble("Latitude");
             this.longitude=(float)airport.getDouble("Longitude");
         } catch (JSONException e) {
