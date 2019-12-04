@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         String groups = sharedPref.getString("groups",null);
         Log.d("Storage",groups==null?"NO GROUPS":groups);
         TableLayout table = findViewById(R.id.listGroups);
-        
+        table.removeAllViews();
         showGroups(groups);
     }
 
@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         Context context = this.getApplicationContext();
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
         String groups = sharedPref.getString("groups",null);
-        showGroups(groups);
+        if (groups != null) showGroups(groups);
         //Log.d("Storage",groups==null?"NO GROUPS":groups);
     }
 
