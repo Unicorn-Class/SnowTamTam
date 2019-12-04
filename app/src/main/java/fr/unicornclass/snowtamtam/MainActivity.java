@@ -9,33 +9,31 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TableLayout;
 import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.mapbox.mapboxsdk.Mapbox;
 
+import java.util.ArrayList;
+
 import model.Airport;
 
 public class MainActivity extends AppCompatActivity {
 
-    public Airport a1 = new Airport("LFPG","Paris Charles de Gaulle","France",49.007951,2.542880);
-    public Airport a2 = new Airport("ENGM","Oslo-Gardermoen","Norway",60.196674,11.100154);
-    public Airport a3 = new Airport("ENBR","Bergen Airport","Norway",60.290763,5.222252);
-    public Airport a4 = new Airport("ENZV","Aéroport de Stavanger","Norway",58.881897,5.629510);
-
-
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         //super.onActivityResult(requestCode,resultCode,data);
-        if (requestCode == 1) {
-            if (resultCode == RESULT_OK) {
-                SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-                String groups = sharedPref.getString("groups",null);
-                Log.d("Storage",groups==null?"NO GROUPS":groups);
-            }
-        }
+        Log.d("RETOUR","COUCOU ");
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        String groups = sharedPref.getString("groups",null);
+        Log.d("Storage",groups==null?"NO GROUPS":groups);
+        TableLayout table = findViewById(R.id.listGroups);
+        
+        showGroups(groups);
     }
 
     @Override
@@ -56,28 +54,58 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
         String groups = sharedPref.getString("groups",null);
         showGroups(groups);
-        Log.d("Storage",groups==null?"NO GROUPS":groups);
-        CardView card = findViewById(R.id.card);
-        card.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),ShowAirportGroup.class);
-                intent.putExtra("nbAirports",4);
-                intent.putExtra("airport1",a1);
-                intent.putExtra("airport2",a2);
-                intent.putExtra("airport3",a3);
-                intent.putExtra("airport4",a4);
-                startActivity(intent);
-            }
-        });
+        //Log.d("Storage",groups==null?"NO GROUPS":groups);
     }
 
     public void showGroups(String groups){
         TableLayout table = findViewById(R.id.listGroups);
-        CardView card = new CardView(getApplicationContext());
-        TextView txt = new TextView(getApplicationContext());
-        ViewGroup.LayoutParams clp = card.getLayoutParams();
-        clp.height = 64;
+
+
+        String groupsAirports[] = groups.split("@");
+
+        for (String gp : groupsAirports){
+            String OACIs[] = gp.split("/");
+            final ArrayList<Airport> list = new ArrayList<>();
+            for (String oaci : OACIs){
+                Airport a = new Airport(oaci, getApplicationContext());
+                list.add(a);
+            }
+
+            CardView card = new CardView(getApplicationContext());
+            TextView txt = new TextView(getApplicationContext());
+
+            CardView.LayoutParams clp = new CardView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            clp.height = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 64, getResources().getDisplayMetrics());
+            clp.width = ViewGroup.LayoutParams.WRAP_CONTENT;
+            int seizeDP = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 16, getResources().getDisplayMetrics());
+            clp.setMargins(seizeDP,seizeDP,seizeDP,seizeDP);
+            card.setLayoutParams(clp);
+
+            RelativeLayout.LayoutParams tlp = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            tlp.setMargins(seizeDP,seizeDP,seizeDP,seizeDP);
+            txt.setLayoutParams(tlp);
+            txt.setText(gp);
+            txt.setTextSize((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 12, getResources().getDisplayMetrics()));
+
+            card.addView(txt);
+            table.addView(card);
+
+            card.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(getApplicationContext(),ShowAirportGroup.class);
+                    intent.putExtra("nbAirports",list.size());
+                    for (int i = 1; i <= list.size(); i++){
+                        intent.putExtra("airport"+i,list.get(i-1));
+                    }
+                    startActivity(intent);
+                }
+            });
+        }
+
+
+
+
     }
 
 }

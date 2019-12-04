@@ -25,10 +25,12 @@ public class ShowAirportGroup extends AppCompatActivity {
         int nb = intent.getIntExtra("nbAirports",1);
         Log.d("nbAirports",""+nb);
         List<Airport> listAirport = new ArrayList<Airport>();
+        String gpName = "";
         for (int i = 1; i < nb+1; i++){
             Airport a = (Airport) intent.getSerializableExtra("airport"+i);
             Log.d("AddAp",a.getOaciCode());
             listAirport.add(a);
+            gpName+= a.getOaciCode()+" ";
         }
         SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager(), listAirport);
         ViewPager viewPager = findViewById(R.id.view_pager);
@@ -36,6 +38,7 @@ public class ShowAirportGroup extends AppCompatActivity {
         TabLayout tabs = findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle(gpName);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
