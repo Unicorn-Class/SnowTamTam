@@ -89,7 +89,7 @@ public class Runway implements Serializable {
                 friction += " "+state;
             }
         }
-        return condition;
+        return friction;
     }
     public String getId() {
         return id;
