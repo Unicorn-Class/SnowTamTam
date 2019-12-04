@@ -25,8 +25,10 @@ import model.Airport;
 
 public class MainActivity extends AppCompatActivity {
 
+
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        //super.onActivityResult(requestCode,resultCode,data);
+
+        super.onActivityResult(requestCode,resultCode,data);
         Log.d("RETOUR","COUCOU ");
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         String groups = sharedPref.getString("groups",null);
