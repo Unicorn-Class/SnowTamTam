@@ -102,8 +102,6 @@ public class Snowtam {
                 String words[] = line.split(" ");
                 for (int j = 0; j < words.length; j = j+2) {
                     if (!words[j].equals("N)") && !words[j].equals("R)") && !words[j].equals("T)")) {
-                        Log.d("WORD 1",words[j]);
-                        Log.d("WORD 2",words[j+1]);
                         blocs.put(words[j],words[j+1]);
                     } else {
                         break;

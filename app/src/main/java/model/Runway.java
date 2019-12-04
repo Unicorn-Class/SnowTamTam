@@ -2,22 +2,21 @@ package model;
 
 import android.util.Log;
 
+import java.io.Serializable;
 import java.util.HashMap;
-import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
-class Runway {
-    String id;
-    String clearedRunwayLength;
-    String clearedRunwayWidth;
-    String condition;
-    String thickness;
-    String frictionCoefficient;
-    String criticalDrift;
-    String obscuredLimelight;
-    String nextClearing;
-    String other;
+
+public class Runway implements Serializable {
+    private String id;
+    private String clearedRunwayLength;
+    private String clearedRunwayWidth;
+    private String condition;
+    private String thickness;
+    private String frictionCoefficient;
+    private String criticalDrift;
+    private String obscuredLimelight;
+    private String nextClearing;
+    private String other;
 
     /**
      * @param id the identifier of the runway
@@ -29,6 +28,7 @@ class Runway {
      * @param criticalDrift
      * @param obscuredLimelight
      * @param nextClearing the next part which will be cleaned
+     * @param other clear information about the SNOWTAM
      */
     public Runway(String id, String clearedRunwayLength, String clearedRunwayWidth, String condition, String thickness, String frictionCoefficient, String criticalDrift, String obscuredLimelight, String nextClearing,String other) {
         this.id = id;
@@ -43,9 +43,9 @@ class Runway {
         this.other=other;
     }
 
-    public Runway(HashMap<String,String> codedRunway) {
-        Map<String, String> SnowtamInfo = codedRunway;
+    public Runway(HashMap<String,String> SnowtamInfo) {
         this.id = SnowtamInfo.get("C)");
+        Log.d("Runway ID",id);
         this.clearedRunwayLength = SnowtamInfo.get("D)");
         this.clearedRunwayWidth = SnowtamInfo.get("E)");
         this.condition = decodeCondition(SnowtamInfo.get("F)"));
@@ -58,27 +58,35 @@ class Runway {
 
     }
     public String decodeCondition(String coded){
-        Log.d("Condition",coded);
+        if(coded.isEmpty()){
+            return "NIL";
+        }
         String condition ="";
         String[] parsedCondition=coded.split("/");
         for(String part:parsedCondition){
-            for(int value : part.toCharArray()){
-                String c = Character.toString ((char) value);
-                String state=Condition.values()[Integer.parseInt(c)].name();
+            if (part.equals("NIL")){
+                String state=Condition.values()[0].name();
                 condition += " "+state;
+            }
+            else{
+                for(int value : part.toCharArray()){
+                    String c = Character.toString ((char) value);
+                    String state=Condition.values()[Integer.parseInt(c)].name();
+                    condition += " "+state;
+                }
             }
         }
         return condition;
     }
     public String decodeFriction(String coded){
         Log.d("Friction",coded);
-        String condition ="";
+        String friction ="";
         String[] parsedCondition=coded.split("/");
         for(String part:parsedCondition){
             for(int value : part.toCharArray()){
                 String c = Character.toString ((char) value);
                 String state=Friction.values()[Integer.parseInt(c)-1].name();
-                condition += " "+state;
+                friction += " "+state;
             }
         }
         return condition;

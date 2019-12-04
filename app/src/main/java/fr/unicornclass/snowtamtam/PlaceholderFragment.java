@@ -23,6 +23,7 @@ import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
 import com.mapbox.mapboxsdk.maps.Style;
 
 import model.Airport;
+import model.Runway;
 import model.Snowtam;
 
 /**
@@ -175,5 +176,17 @@ public class PlaceholderFragment extends Fragment {
     public void refreshSnowtam(Snowtam s, final View v) {
         TextView date = v.findViewById(R.id.dateHour);
         date.setText(s.getObservationDate(v.getContext()));
+        TextView country = v.findViewById(R.id.airportCountry);
+        country.setText(s.getPlaceAirport().getCountry());
+        TextView idRunway =v.findViewById(R.id.idRunway);
+        Runway r= s.getRunway();
+        idRunway.setText(r.getId());
+        TextView condition=v.findViewById(R.id.condition);
+        condition.setText(r.getCondition());
+        TextView thickness=v.findViewById(R.id.thickness);
+        thickness.setText(r.getThickness());
+        TextView friction=v.findViewById(R.id.frictionCoefficient);
+        friction.setText(r.getFrictionCoefficient());
+
     }
 }
