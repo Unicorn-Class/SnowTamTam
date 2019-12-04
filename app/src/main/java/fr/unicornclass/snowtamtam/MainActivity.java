@@ -7,8 +7,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TableLayout;
+import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.mapbox.mapboxsdk.Mapbox;
@@ -23,6 +27,17 @@ public class MainActivity extends AppCompatActivity {
     public Airport a4 = new Airport("ENZV","Aéroport de Stavanger","Norway",58.881897,5.629510);
 
 
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        //super.onActivityResult(requestCode,resultCode,data);
+        if (requestCode == 1) {
+            if (resultCode == RESULT_OK) {
+                SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                String groups = sharedPref.getString("groups",null);
+                Log.d("Storage",groups==null?"NO GROUPS":groups);
+            }
+        }
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,13 +48,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),Search.class);
-                startActivity(intent);
+                startActivityForResult(intent, 1);
             }
         });
 
         Context context = this.getApplicationContext();
-        SharedPreferences sharedPref = context.getSharedPreferences("storage", Context.MODE_PRIVATE);
-
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
+        String groups = sharedPref.getString("groups",null);
+        showGroups(groups);
+        Log.d("Storage",groups==null?"NO GROUPS":groups);
         CardView card = findViewById(R.id.card);
         card.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,5 +72,12 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    public void showGroups(String groups){
+        TableLayout table = findViewById(R.id.listGroups);
+        CardView card = new CardView(getApplicationContext());
+        TextView txt = new TextView(getApplicationContext());
+        ViewGroup.LayoutParams clp = card.getLayoutParams();
+        clp.height = 64;
+    }
 
 }

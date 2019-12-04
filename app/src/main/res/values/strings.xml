@@ -23,4 +23,6 @@
     <string name="dash">-</string>
     <string name="add">Add</string>
     <string name="AirportsInGroup">Airports In Group</string>
+    <string name="remove">Remove</string>
+    <string name="cantAddMore4">You can\'t add more than 4 airports to a group</string>
 </resources>
