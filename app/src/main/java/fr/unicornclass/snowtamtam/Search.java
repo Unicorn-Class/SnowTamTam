@@ -112,7 +112,7 @@ public class Search extends AppCompatActivity {
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 if (searchBar.getText().toString().length() == 4){
                     try {
-                        final Airport airport = new Airport(searchBar.getText().toString().toUpperCase(),c);
+                        final Airport airport = Airport.getAirport(searchBar.getText().toString().toUpperCase(),c);
                         TextView oaci = findViewById(R.id.airportOACI);
                         TextView name = findViewById(R.id.airportFriendlyName);
                         oaci.setText(airport.getOaciCode());

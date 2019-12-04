@@ -12,6 +12,7 @@ import java.io.InputStream;
 import java.io.Serializable;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 
 /**
@@ -26,6 +27,8 @@ public class Airport implements Serializable {
     private double latitude;
     private double longitude;
 
+    public static HashMap<String,Airport> cached = new HashMap<>();
+
     /**
      * @param oaciCode the OACI code of the airport should be 4 letters
      * @param name the name of the airport
@@ -33,7 +36,7 @@ public class Airport implements Serializable {
      * @param latitude the latitude of the airport
      * @param longitude the longitude of the airport
      */
-    public Airport(String oaciCode, String name, String country, double latitude, double longitude) {
+    private Airport(String oaciCode, String name, String country, double latitude, double longitude) {
         this.oaciCode = oaciCode;
         this.name = name;
         this.country = country;
@@ -41,7 +44,14 @@ public class Airport implements Serializable {
         this.longitude = longitude;
     }
 
-    public Airport(String oaci,Context context) {
+    public static Airport getAirport(String oaci,Context context){
+        if (cached.containsKey(oaci)) return cached.get(oaci);
+        Airport a = new Airport(oaci,context);
+        cached.put(oaci,a);
+        return a;
+    }
+
+    private Airport(String oaci,Context context) {
         this.oaciCode=oaci;
         JSONObject airport = getAirportFromOACI(oaci,context);
         this.oaciCode=oaci;

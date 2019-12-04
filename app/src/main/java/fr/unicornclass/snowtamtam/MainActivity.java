@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
             String OACIs[] = gp.split("/");
             final ArrayList<Airport> list = new ArrayList<>();
             for (String oaci : OACIs){
-                Airport a = new Airport(oaci, getApplicationContext());
+                Airport a = Airport.getAirport(oaci, getApplicationContext());
                 list.add(a);
             }
 

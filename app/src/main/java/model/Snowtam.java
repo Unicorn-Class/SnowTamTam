@@ -112,7 +112,7 @@ public class Snowtam {
             }
         }
 
-        this.placeAirport = new Airport(blocs.get("A)"),context);
+        this.placeAirport = Airport.getAirport(blocs.get("A)"),context);
         this.ObservationDate = blocs.get("B)");
         this.runway=new Runway(blocs);
     }
