@@ -76,7 +76,7 @@ public class Runway implements Serializable {
                 }
             }
         }
-        return condition;
+        return condition.substring(0,1);
     }
     public String decodeFriction(String coded){
         Log.d("Friction",coded);
@@ -89,7 +89,7 @@ public class Runway implements Serializable {
                 friction += " "+state;
             }
         }
-        return friction;
+        return friction.substring(0,1);
     }
     public String getId() {
         return id;

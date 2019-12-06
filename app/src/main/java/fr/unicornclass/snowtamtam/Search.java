@@ -92,15 +92,15 @@ public class Search extends AppCompatActivity {
         final EditText searchBar = findViewById(R.id.searchBar);
         final Context c = getApplicationContext();
         final CardView card = findViewById(R.id.searchResult);
-        card.setVisibility(View.INVISIBLE);
+        card.setVisibility(View.GONE);
 
-        airportCard1.setVisibility(View.INVISIBLE);
+        airportCard1.setVisibility(View.GONE);
 
-        airportCard2.setVisibility(View.INVISIBLE);
+        airportCard2.setVisibility(View.GONE);
 
-        airportCard3.setVisibility(View.INVISIBLE);
+        airportCard3.setVisibility(View.GONE);
 
-        airportCard4.setVisibility(View.INVISIBLE);
+        airportCard4.setVisibility(View.GONE);
 
         searchBar.addTextChangedListener(new TextWatcher() {
             @Override
@@ -123,17 +123,17 @@ public class Search extends AppCompatActivity {
                             @Override
                             public void onClick(View view) {
                                 addAirportToGroup(airport);
-                                card.setVisibility(View.INVISIBLE);
+                                card.setVisibility(View.GONE);
                                 searchBar.setText("");
                             }
                         });
 
                         card.setVisibility(View.VISIBLE);
                     } catch (Exception e) {
-                        card.setVisibility(View.INVISIBLE);
+                        card.setVisibility(View.GONE);
                     }
                 } else {
-                    card.setVisibility(View.INVISIBLE);
+                    card.setVisibility(View.GONE);
                 }
             }
 
@@ -149,10 +149,10 @@ public class Search extends AppCompatActivity {
         ArrayList<Airport> newGroup = (ArrayList<Airport>) group.clone();
         group.clear();
 
-        airportCard1.setVisibility(View.INVISIBLE);
-        airportCard2.setVisibility(View.INVISIBLE);
-        airportCard3.setVisibility(View.INVISIBLE);
-        airportCard4.setVisibility(View.INVISIBLE);
+        airportCard1.setVisibility(View.GONE);
+        airportCard2.setVisibility(View.GONE);
+        airportCard3.setVisibility(View.GONE);
+        airportCard4.setVisibility(View.GONE);
 
         for (Airport ap : newGroup) addAirportToGroup(ap);
     }
