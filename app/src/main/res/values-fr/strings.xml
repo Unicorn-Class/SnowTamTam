@@ -26,4 +26,5 @@
     <string name="AirportsInGroup">Aéroports dans le groupe</string>
     <string name="remove">Retirer</string>
     <string name="cantAddMore4">Vous ne pouvez pas ajouter plus de 4 aéroports à un groupe</string>
+    <string name="groupRemoved">Groupe d\'aéroports supprimé !</string>
 </resources>

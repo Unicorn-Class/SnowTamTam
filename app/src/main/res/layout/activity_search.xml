@@ -82,6 +82,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
                 android:text="@string/add"
+                android:backgroundTint="@color/colorPrimary"
+                android:textColor="@color/white"
                 app:layout_constraintBottom_toBottomOf="@+id/airportFriendlyName"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/airportFriendlyName" />
@@ -95,6 +97,7 @@
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="16dp"
                 android:text="@string/dash"
+                android:textColor="@color/colorPrimary"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/buttonAddToGrp"
@@ -145,6 +148,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:text="@string/dash"
+                    android:textColor="@color/colorPrimary"
                     app:layout_constraintBottom_toBottomOf="@+id/airportBtnRm1"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/airportBtnRm1" />
@@ -157,6 +161,8 @@
                     android:layout_marginEnd="16dp"
                     android:layout_marginBottom="16dp"
                     android:text="@string/remove"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:textColor="@color/white"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -187,6 +193,8 @@
                     android:layout_marginEnd="16dp"
                     android:layout_marginBottom="16dp"
                     android:text="@string/remove"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:textColor="@color/white"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -197,6 +205,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:text="@string/dash"
+                    android:textColor="@color/colorPrimary"
                     app:layout_constraintBottom_toBottomOf="@+id/airportBtnRm2"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/airportBtnRm2" />
@@ -226,6 +235,8 @@
                     android:layout_marginEnd="16dp"
                     android:layout_marginBottom="16dp"
                     android:text="@string/remove"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:textColor="@color/white"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -236,6 +247,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:text="@string/dash"
+                    android:textColor="@color/colorPrimary"
                     app:layout_constraintBottom_toBottomOf="@+id/airportBtnRm3"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/airportBtnRm3" />
@@ -265,6 +277,8 @@
                     android:layout_marginEnd="16dp"
                     android:layout_marginBottom="16dp"
                     android:text="@string/remove"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:textColor="@color/white"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -275,6 +289,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:text="@string/dash"
+                    android:textColor="@color/colorPrimary"
                     app:layout_constraintBottom_toBottomOf="@+id/airportBtnRm4"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/airportBtnRm4" />

@@ -12,9 +12,11 @@ import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TableLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.mapbox.mapboxsdk.Mapbox;
@@ -28,11 +30,9 @@ public class MainActivity extends AppCompatActivity {
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode,resultCode,data);
-        Log.d("RETOUR","COUCOU ");
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         String groups = sharedPref.getString("groups",null);
-        Log.d("Storage",groups==null?"NO GROUPS":groups);
-        TableLayout table = findViewById(R.id.listGroups);
+        LinearLayout table = findViewById(R.id.listGroups);
         table.removeAllViews();
         showGroups(groups);
     }
@@ -54,18 +54,20 @@ public class MainActivity extends AppCompatActivity {
         Context context = this.getApplicationContext();
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
         String groups = sharedPref.getString("groups",null);
-        if (groups != null) showGroups(groups);
+        showGroups(groups);
         //Log.d("Storage",groups==null?"NO GROUPS":groups);
     }
 
-    public void showGroups(String groups){
-        TableLayout table = findViewById(R.id.listGroups);
+    public void showGroups(final String groups){
+        if (groups == null || groups.equals("")) return;
+        Log.d("Groups to show",groups==null?"NONE":groups);
+        final LinearLayout table = findViewById(R.id.listGroups);
 
 
-        String groupsAirports[] = groups.split("@");
+        String[] groupsAirports = groups.split("@");
 
-        for (String gp : groupsAirports){
-            String OACIs[] = gp.split("/");
+        for (final String gp : groupsAirports){
+            String[] OACIs = gp.split("/");
             final ArrayList<Airport> list = new ArrayList<>();
             for (String oaci : OACIs){
                 Airport a = Airport.getAirport(oaci, getApplicationContext());
@@ -77,16 +79,18 @@ public class MainActivity extends AppCompatActivity {
 
             CardView.LayoutParams clp = new CardView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             clp.height = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 64, getResources().getDisplayMetrics());
-            clp.width = ViewGroup.LayoutParams.WRAP_CONTENT;
+            clp.width = ViewGroup.LayoutParams.MATCH_PARENT;
             int seizeDP = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 16, getResources().getDisplayMetrics());
             clp.setMargins(seizeDP,seizeDP,seizeDP,seizeDP);
             card.setLayoutParams(clp);
+
 
             RelativeLayout.LayoutParams tlp = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             tlp.setMargins(seizeDP,seizeDP,seizeDP,seizeDP);
             txt.setLayoutParams(tlp);
             txt.setText(gp);
-            txt.setTextSize((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 12, getResources().getDisplayMetrics()));
+            txt.setTextSize((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 10, getResources().getDisplayMetrics()));
+            txt.setTextColor(getColor(R.color.colorPrimary));
 
             card.addView(txt);
             table.addView(card);
@@ -100,6 +104,20 @@ public class MainActivity extends AppCompatActivity {
                         intent.putExtra("airport"+i,list.get(i-1));
                     }
                     startActivity(intent);
+                }
+            });
+            card.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    String newGroups = groups.replace(gp+"@","");
+                    SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                    SharedPreferences.Editor editor = sharedPref.edit();
+                    editor.putString("groups", newGroups);
+                    editor.commit();
+                    Toast.makeText(getApplicationContext(),getString(R.string.groupRemoved),Toast.LENGTH_LONG).show();
+                    table.removeAllViews();
+                    showGroups(newGroups);
+                    return true;
                 }
             });
         }
