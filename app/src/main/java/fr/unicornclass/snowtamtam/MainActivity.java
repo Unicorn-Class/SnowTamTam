@@ -8,13 +8,11 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -55,12 +53,10 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
         String groups = sharedPref.getString("groups",null);
         showGroups(groups);
-        //Log.d("Storage",groups==null?"NO GROUPS":groups);
     }
 
     public void showGroups(final String groups){
         if (groups == null || groups.equals("")) return;
-        Log.d("Groups to show",groups==null?"NONE":groups);
         final LinearLayout table = findViewById(R.id.listGroups);
 
 

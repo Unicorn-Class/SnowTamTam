@@ -1,7 +1,5 @@
 package model;
 
-import android.util.Log;
-
 import java.io.Serializable;
 import java.util.HashMap;
 
@@ -45,7 +43,6 @@ public class Runway implements Serializable {
 
     public Runway(HashMap<String,String> SnowtamInfo) {
         this.id = SnowtamInfo.get("C)");
-        Log.d("Runway ID",id);
         this.clearedRunwayLength = SnowtamInfo.get("D)");
         this.clearedRunwayWidth = SnowtamInfo.get("E)");
         this.condition = decodeCondition(SnowtamInfo.get("F)"));
@@ -79,7 +76,6 @@ public class Runway implements Serializable {
         return condition.substring(1);
     }
     public String decodeFriction(String coded){
-        Log.d("Friction",coded);
         String friction ="";
         String[] parsedCondition=coded.split("/");
         for(String part:parsedCondition){
@@ -99,67 +95,16 @@ public class Runway implements Serializable {
         this.id = id;
     }
 
-    public String getClearedRunwayLength() {
-        return clearedRunwayLength;
-    }
-
-    public void setClearedRunwayLength(String clearedRunwayLength) {
-        this.clearedRunwayLength = clearedRunwayLength;
-    }
-
-    public String getClearedRunwayWidth() {
-        return clearedRunwayWidth;
-    }
-
-    public void setClearedRunwayWidth(String clearedRunwayWidth) {
-        this.clearedRunwayWidth = clearedRunwayWidth;
-    }
-
     public String getCondition() {
         return condition;
-    }
-
-    public void setCondition(String condition) {
-        this.condition = condition;
     }
 
     public String getThickness() {
         return thickness;
     }
 
-    public void setThickness(String thickness) {
-        this.thickness = thickness;
-    }
-
     public String getFrictionCoefficient() {
         return frictionCoefficient;
     }
 
-    public void setFrictionCoefficient(String frictionCoefficient) {
-        this.frictionCoefficient = frictionCoefficient;
-    }
-
-    public String getCriticalDrift() {
-        return criticalDrift;
-    }
-
-    public void setCriticalDrift(String criticalDrift) {
-        this.criticalDrift = criticalDrift;
-    }
-
-    public String getObscuredLimelight() {
-        return obscuredLimelight;
-    }
-
-    public void setObscuredLimelight(String obscuredLimelight) {
-        this.obscuredLimelight = obscuredLimelight;
-    }
-
-    public String getNextClearing() {
-        return nextClearing;
-    }
-
-    public void setNextClearing(String nextClearing) {
-        this.nextClearing = nextClearing;
-    }
 }

@@ -55,12 +55,9 @@ public class Airport implements Serializable {
         this.oaciCode=oaci;
         JSONObject airport = getAirportFromOACI(oaci,context);
         this.oaciCode=oaci;
-        Log.d("OACI Code",this.oaciCode);
         try {
             this.name=airport.getString("Name");
-
             this.country=airport.getString("Country");
-            Log.d("Aiport country",country);
             this.latitude=(float)airport.getDouble("Latitude");
             this.longitude=(float)airport.getDouble("Longitude");
         } catch (JSONException e) {
@@ -96,10 +93,6 @@ public class Airport implements Serializable {
         return oaciCode;
     }
 
-    public void setOaciCode(String oaciCode) {
-        this.oaciCode = oaciCode;
-    }
-
     public String getName() {
         return name;
     }
@@ -112,23 +105,11 @@ public class Airport implements Serializable {
         return country;
     }
 
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
     public double getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(float latitude) {
-        this.latitude = latitude;
-    }
-
     public double getLongitude() {
         return longitude;
-    }
-
-    public void setLongitude(float longitude) {
-        this.longitude = longitude;
     }
 }

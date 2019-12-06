@@ -106,7 +106,6 @@ public class PlaceholderFragment extends Fragment {
                     SnowtamAPI.getSnowtamAPI().getSnowtam(airport.getOaciCode(), root.getContext(), new VolleyCallback() {
                         @Override
                         public void onSuccess(String result) {
-                            Log.d("SNOWTAM",result);
                             if (!result.equals("")){
                                 Snowtam s = new Snowtam(result,root.getContext());
                                 snowtam = result;
@@ -127,7 +126,6 @@ public class PlaceholderFragment extends Fragment {
                 SnowtamAPI.getSnowtamAPI().getSnowtam(airport.getOaciCode(), root.getContext(), new VolleyCallback() {
                     @Override
                     public void onSuccess(String result) {
-                        Log.d("SNOWTAM",result);
                         if (!result.equals("")){
                             Snowtam s = new Snowtam(result,root.getContext());
                             snowtam = result;

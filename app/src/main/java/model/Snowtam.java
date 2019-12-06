@@ -1,7 +1,6 @@
 package model;
 
 import android.content.Context;
-import android.util.Log;
 
 import java.util.HashMap;
 
@@ -30,10 +29,6 @@ public class Snowtam {
 
     public Airport getPlaceAirport() {
         return placeAirport;
-    }
-
-    public void setPlaceAirport(Airport placeAirport) {
-        this.placeAirport = placeAirport;
     }
 
     public String getObservationDate(Context c) {
@@ -81,16 +76,8 @@ public class Snowtam {
         return humanReadableDate;
     }
 
-    public void setObservationDate(String observationDate) {
-        ObservationDate = observationDate;
-    }
-
     public Runway getRunway() {
         return runway;
-    }
-
-    public void setRunway(Runway runway) {
-        this.runway = runway;
     }
 
     public Snowtam(String codedSnowtam, Context context) {

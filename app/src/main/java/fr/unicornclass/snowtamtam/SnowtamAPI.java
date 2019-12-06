@@ -2,9 +2,6 @@ package fr.unicornclass.snowtamtam;
 
 import android.content.Context;
 import android.util.Log;
-
-import androidx.annotation.IntegerRes;
-
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -12,22 +9,16 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-
-import org.json.JSONObject;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-
 import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.TimeZone;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import model.Snowtam;
 
 public class SnowtamAPI {
 
@@ -51,13 +42,10 @@ public class SnowtamAPI {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        // Display the first 500 characters of the response string.
-                        //Log.d("SnowTamTam - API",response);
                         Document doc = Jsoup.parse(response);
                         Elements notams = doc.select(".NOTAM-CORPS");
                         String snowtam = "";
                         for (Element e : notams){
-                            //Log.d("NOTAMELEMENT",e.text());
                             Matcher matcher = pattern.matcher(response);
                             while (matcher.find()) {
                                 snowtam = matcher.group(0).replace("<font class='NOTAM-CORPS'>","").replace("</font>","");
