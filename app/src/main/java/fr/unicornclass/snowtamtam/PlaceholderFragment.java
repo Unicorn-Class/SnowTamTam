@@ -68,6 +68,7 @@ public class PlaceholderFragment extends Fragment {
         final View root = inflater.inflate(R.layout.fragment_show_airport_group, container, false);
 
         FloatingActionButton fab = root.findViewById(R.id.showRawSnowtamBtn);
+        fab.setEnabled(false);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -110,8 +111,11 @@ public class PlaceholderFragment extends Fragment {
                                 Snowtam s = new Snowtam(result,root.getContext());
                                 snowtam = result;
                                 refreshSnowtam(s,root);
+                                FloatingActionButton fab = root.findViewById(R.id.showRawSnowtamBtn);
+                                fab.setEnabled(true);
                             } else {
-
+                                FloatingActionButton fab = root.findViewById(R.id.showRawSnowtamBtn);
+                                fab.setEnabled(false);
                             }
                             swp.setRefreshing(false);
                         }
@@ -127,11 +131,14 @@ public class PlaceholderFragment extends Fragment {
                     @Override
                     public void onSuccess(String result) {
                         if (!result.equals("")){
+                            FloatingActionButton fab = root.findViewById(R.id.showRawSnowtamBtn);
+                            fab.setEnabled(true);
                             Snowtam s = new Snowtam(result,root.getContext());
                             snowtam = result;
                             refreshSnowtam(s,root);
                         } else {
-
+                            FloatingActionButton fab = root.findViewById(R.id.showRawSnowtamBtn);
+                            fab.setEnabled(false);
                         }
                         swp.setRefreshing(false);
                     }
