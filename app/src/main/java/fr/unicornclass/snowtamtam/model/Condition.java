@@ -2,9 +2,10 @@ package fr.unicornclass.snowtamtam.model;
 
 public enum Condition {
         CLEAR,
-        DAMP ,
-        WET ,
+        DAMP,
+        WET,
         RIME,
+        DRYSNOW,
         WETSNOW,
         SLUSH,
         ICE,
