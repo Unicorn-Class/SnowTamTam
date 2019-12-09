@@ -28,4 +28,8 @@
     <string name="cantAddMore4">Vous ne pouvez pas ajouter plus de 4 aéroports à un groupe</string>
     <string name="groupRemoved">Groupe d\'aéroports supprimé !</string>
     <string name="alreadyInGroup">Cet aéroport est déjà dans le groupe</string>
+    <string name="confirmDeletion">Voulez-vous supprimer ce groupe d\'aéroports ?</string>
+    <string name="yes">Oui</string>
+    <string name="no">Non</string>
+    <string name="airportGroupDelete">Supprimer le groupe</string>
 </resources>

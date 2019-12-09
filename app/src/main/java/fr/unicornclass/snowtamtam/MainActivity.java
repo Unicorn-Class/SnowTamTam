@@ -1,9 +1,11 @@
 package fr.unicornclass.snowtamtam;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -59,6 +61,8 @@ public class MainActivity extends AppCompatActivity {
         if (groups == null || groups.equals("")) return;
         final LinearLayout table = findViewById(R.id.listGroups);
 
+        final Context c = this;
+
 
         String[] groupsAirports = groups.split("@");
 
@@ -105,14 +109,29 @@ public class MainActivity extends AppCompatActivity {
             card.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {
-                    String newGroups = groups.replace(gp+"@","");
-                    SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-                    SharedPreferences.Editor editor = sharedPref.edit();
-                    editor.putString("groups", newGroups);
-                    editor.commit();
-                    Toast.makeText(getApplicationContext(),getString(R.string.groupRemoved),Toast.LENGTH_LONG).show();
-                    table.removeAllViews();
-                    showGroups(newGroups);
+                    DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            switch (which){
+                                case DialogInterface.BUTTON_POSITIVE:
+                                    String newGroups = groups.replace(gp+"@","");
+                                    SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                                    SharedPreferences.Editor editor = sharedPref.edit();
+                                    editor.putString("groups", newGroups);
+                                    editor.commit();
+                                    Toast.makeText(getApplicationContext(),getString(R.string.groupRemoved),Toast.LENGTH_LONG).show();
+                                    table.removeAllViews();
+                                    showGroups(newGroups);
+                                    break;
+
+                                case DialogInterface.BUTTON_NEGATIVE:
+                                    //No button clicked
+                                    break;
+                            }
+                        }
+                    };
+                    AlertDialog.Builder builder = new AlertDialog.Builder(c);
+                    builder.setTitle(getString(R.string.airportGroupDelete)).setMessage(getString(R.string.confirmDeletion)).setPositiveButton(getString(R.string.yes), dialogClickListener).setNegativeButton(getString(R.string.no), dialogClickListener).show();
                     return true;
                 }
             });
