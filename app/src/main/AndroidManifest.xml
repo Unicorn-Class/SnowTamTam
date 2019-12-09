@@ -15,6 +15,7 @@
         android:usesCleartextTraffic="true">
         <activity
             android:name=".RawSnowtam"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_raw_snowtam"
             android:parentActivityName=".ShowAirportGroup"
             android:theme="@style/AppTheme.NoActionBar">
@@ -25,6 +26,7 @@
         <activity
             android:name=".Search"
             android:label="@string/title_activity_search"
+            android:screenOrientation="portrait"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
@@ -34,6 +36,7 @@
         <activity
             android:name=".ShowAirportGroup"
             android:label="@string/title_activity_show_airport_group"
+            android:screenOrientation="portrait"
             android:parentActivityName=".MainActivity"
             android:launchMode="singleTask"
             android:theme="@style/AppTheme.NoActionBar">
@@ -42,6 +45,7 @@
                 android:value="fr.unicornclass.snowtamtam.MainActivity" />
         </activity>
         <activity android:name=".MainActivity"
+            android:screenOrientation="portrait"
             android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
