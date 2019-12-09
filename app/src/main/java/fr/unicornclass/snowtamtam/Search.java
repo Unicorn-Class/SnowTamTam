@@ -154,6 +154,10 @@ public class Search extends AppCompatActivity {
     }
 
     public void addAirportToGroup(final Airport a){
+        if (group.contains(a)) {
+            Toast.makeText(this.getApplicationContext(),getString(R.string.alreadyInGroup),Toast.LENGTH_LONG).show();
+            return;
+        }
         if (group.size() < 4) {
             group.add(a);
             switch (group.size()){
