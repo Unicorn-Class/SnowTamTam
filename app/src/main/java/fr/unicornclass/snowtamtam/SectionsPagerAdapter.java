@@ -10,7 +10,7 @@ import androidx.fragment.app.FragmentPagerAdapter;
 
 import java.util.List;
 
-import model.Airport;
+import fr.unicornclass.snowtamtam.model.Airport;
 
 /**
  * A [FragmentPagerAdapter] that returns a fragment corresponding to

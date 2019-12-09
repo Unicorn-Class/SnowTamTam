@@ -1,4 +1,4 @@
-package model;
+package fr.unicornclass.snowtamtam.model;
 
 public enum Friction {
     POOR,

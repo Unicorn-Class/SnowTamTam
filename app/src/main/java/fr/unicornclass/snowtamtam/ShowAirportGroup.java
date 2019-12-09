@@ -13,7 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.Airport;
+import fr.unicornclass.snowtamtam.model.Airport;
 
 public class ShowAirportGroup extends AppCompatActivity {
 

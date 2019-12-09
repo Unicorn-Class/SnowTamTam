@@ -21,7 +21,7 @@ import com.mapbox.mapboxsdk.Mapbox;
 
 import java.util.ArrayList;
 
-import model.Airport;
+import fr.unicornclass.snowtamtam.model.Airport;
 
 public class MainActivity extends AppCompatActivity {
 

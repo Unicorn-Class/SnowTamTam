@@ -6,6 +6,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -22,9 +25,12 @@ import com.mapbox.mapboxsdk.maps.MapboxMap;
 import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
 import com.mapbox.mapboxsdk.maps.Style;
 
-import model.Airport;
-import model.Runway;
-import model.Snowtam;
+import java.util.ArrayList;
+import java.util.List;
+
+import fr.unicornclass.snowtamtam.model.Airport;
+import fr.unicornclass.snowtamtam.model.Runway;
+import fr.unicornclass.snowtamtam.model.Snowtam;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -68,6 +74,8 @@ public class PlaceholderFragment extends Fragment {
         final View root = inflater.inflate(R.layout.fragment_show_airport_group, container, false);
 
         FloatingActionButton fab = root.findViewById(R.id.showRawSnowtamBtn);
+        final Spinner sp = root.findViewById(R.id.runwaySelector);
+        sp.setEnabled(false);
         fab.setEnabled(false);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,10 +120,14 @@ public class PlaceholderFragment extends Fragment {
                                 snowtam = result;
                                 refreshSnowtam(s,root);
                                 FloatingActionButton fab = root.findViewById(R.id.showRawSnowtamBtn);
+                                final Spinner sp = root.findViewById(R.id.runwaySelector);
                                 fab.setEnabled(true);
+                                sp.setEnabled(true);
                             } else {
                                 FloatingActionButton fab = root.findViewById(R.id.showRawSnowtamBtn);
+                                final Spinner sp = root.findViewById(R.id.runwaySelector);
                                 fab.setEnabled(false);
+                                sp.setEnabled(false);
                             }
                             swp.setRefreshing(false);
                         }
@@ -132,13 +144,17 @@ public class PlaceholderFragment extends Fragment {
                     public void onSuccess(String result) {
                         if (!result.equals("")){
                             FloatingActionButton fab = root.findViewById(R.id.showRawSnowtamBtn);
+                            final Spinner sp = root.findViewById(R.id.runwaySelector);
                             fab.setEnabled(true);
+                            sp.setEnabled(true);
                             Snowtam s = new Snowtam(result,root.getContext());
                             snowtam = result;
                             refreshSnowtam(s,root);
                         } else {
                             FloatingActionButton fab = root.findViewById(R.id.showRawSnowtamBtn);
+                            final Spinner sp = root.findViewById(R.id.runwaySelector);
                             fab.setEnabled(false);
+                            sp.setEnabled(false);
                         }
                         swp.setRefreshing(false);
                     }
@@ -179,19 +195,41 @@ public class PlaceholderFragment extends Fragment {
     }
 
     public void refreshSnowtam(Snowtam s, final View v) {
-        TextView date = v.findViewById(R.id.dateHour);
-        date.setText(s.getObservationDate(v.getContext()));
         TextView country = v.findViewById(R.id.airportCountry);
         country.setText(s.getPlaceAirport().getCountry());
-        TextView idRunway =v.findViewById(R.id.idRunway);
-        Runway r= s.getRunway();
-        idRunway.setText(r.getId());
-        TextView condition=v.findViewById(R.id.condition);
-        condition.setText(r.getCondition());
-        TextView thickness=v.findViewById(R.id.thickness);
-        thickness.setText(r.getThickness());
-        TextView friction=v.findViewById(R.id.frictionCoefficient);
-        friction.setText(r.getFrictionCoefficient());
+        final ArrayList<Runway> rways = s.getRunways();
+        final Spinner sp = v.findViewById(R.id.runwaySelector);
+        List<String> items = new ArrayList<>();
+        for (Runway r : rways){
+            Log.d("Runway",r.getId());
+            items.add(r.getId());
+        }
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(v.getContext(), android.R.layout.simple_spinner_dropdown_item,items);
+        sp.setAdapter(adapter);
+        sp.setEnabled(true);
+        sp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Log.d("Spinner",sp.getSelectedItem().toString());
+                for (Runway r: rways){
+                    if (r.getId().equals(sp.getSelectedItem().toString())){
+                        TextView condition=v.findViewById(R.id.condition);
+                        condition.setText(r.getCondition());
+                        TextView thickness=v.findViewById(R.id.thickness);
+                        thickness.setText(r.getThickness());
+                        TextView friction=v.findViewById(R.id.frictionCoefficient);
+                        friction.setText(r.getFrictionCoefficient());
+                        TextView date = v.findViewById(R.id.dateHour);
+                        date.setText(r.getDate(v.getContext()));
+                    }
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
     }
 }

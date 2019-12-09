@@ -1,7 +1,9 @@
-package model;
+package fr.unicornclass.snowtamtam.model;
 
 import android.content.Context;
+import android.util.Log;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import fr.unicornclass.snowtamtam.R;
@@ -15,6 +17,7 @@ public class Snowtam {
     private Airport placeAirport;
     private String ObservationDate;
     private Runway runway;
+    private ArrayList<Runway> runways = new ArrayList<>();
 
     /**
      * @param placeAirport    the localisation of the airport
@@ -82,6 +85,9 @@ public class Snowtam {
 
     public Snowtam(String codedSnowtam, Context context) {
         String[] parsedSnowtam = codedSnowtam.split("\n");
+        ArrayList<HashMap<String,String>> runwaysSnowtams = new ArrayList<HashMap<String,String>>();
+        int nbB = 0;
+        String airportOACI = "";
         HashMap<String,String> blocs = new HashMap<String, String>();
         for (int i = 4; i < parsedSnowtam.length; i++){
             String line = parsedSnowtam[i];
@@ -89,17 +95,39 @@ public class Snowtam {
                 String words[] = line.split(" ");
                 for (int j = 0; j < words.length; j = j+2) {
                     if (!words[j].equals("N)") && !words[j].equals("R)") && !words[j].equals("T)")) {
-                        blocs.put(words[j],words[j+1]);
+                        if (words[j].equals("A)")) airportOACI = words[j+1];
+                        else {
+                            if (words[j].equals("B)")) {
+                                if (nbB > 0) runwaysSnowtams.add(blocs);
+                                blocs = new HashMap<>();
+                                nbB++;
+                            }
+                            blocs.put(words[j],words[j+1]);
+                        }
                     } else {
                         break;
                     }
                 }
+
             }
         }
-
-        this.placeAirport = Airport.getAirport(blocs.get("A)"),context);
-        this.ObservationDate = blocs.get("B)");
-        this.runway=new Runway(blocs);
+        runwaysSnowtams.add(blocs);
+        //Log.i("NB RWays",""+runwaysSnowtams.size());
+        this.placeAirport = Airport.getAirport(airportOACI,context);
+        //this.ObservationDate = blocs.get("B)");
+        //this.runway=new Runway(blocs);
+        for (HashMap<String,String> blocks : runwaysSnowtams){
+            //for (String k : blocks.keySet()) Log.d("Keys in Blocs",k);
+            Runway r = new Runway(blocks);
+            this.runways.add(r);
+        }
     }
 
+    public ArrayList<Runway> getRunways() {
+        return runways;
+    }
+
+    public void setRunways(ArrayList<Runway> runways) {
+        this.runways = runways;
+    }
 }

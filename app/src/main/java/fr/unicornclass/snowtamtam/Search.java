@@ -19,11 +19,10 @@ import java.util.ArrayList;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
-import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import model.Airport;
+import fr.unicornclass.snowtamtam.model.Airport;
 
 public class Search extends AppCompatActivity {
 
