@@ -8,6 +8,11 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="AppToolbar" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="android:textColorPrimary">@color/white</item>
+        <item name="android:textColorSecondary">@color/white</item>
+    </style>
+
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
