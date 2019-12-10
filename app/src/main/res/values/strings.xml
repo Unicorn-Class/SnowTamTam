@@ -5,7 +5,7 @@
     <string name="placeholder">Placeholder</string>
     <string name="title_activity_show_airport_group">Show Airport Group</string>
     <string name="title_activity_search">Search</string>
-    <string name="searchByOACI">Search by OACI Code</string>
+    <string name="searchByOACI">Search by ICAO Code</string>
     <string name="title_activity_raw_snowtam">Raw Snowtam</string>
     <string name="month_January">January</string>
     <string name="month_February">February</string>
@@ -45,4 +45,6 @@
     <string name="style">Appearance</string>
     <string name="darkTheme">Dark Theme</string>
     <string name="noGroup">There is no group for the moment</string>
+    <string name="noSnowtam">No Snowtam available for this airport</string>
+    <string name="invalidICAO">Invalid ICAO</string>
 </resources>

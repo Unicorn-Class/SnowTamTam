@@ -138,6 +138,7 @@ public class ShowAirport extends Fragment {
                                 final Spinner sp = root.findViewById(R.id.runwaySelector);
                                 fab.setEnabled(false);
                                 sp.setEnabled(false);
+                                Toast.makeText(root.getContext(), getString(R.string.noSnowtam), Toast.LENGTH_SHORT).show();
                             }
                             swp.setRefreshing(false);
                         }
@@ -165,6 +166,7 @@ public class ShowAirport extends Fragment {
                             final Spinner sp = root.findViewById(R.id.runwaySelector);
                             fab.setEnabled(false);
                             sp.setEnabled(false);
+                            Toast.makeText(root.getContext(), getString(R.string.noSnowtam), Toast.LENGTH_SHORT).show();
                         }
                         swp.setRefreshing(false);
                     }

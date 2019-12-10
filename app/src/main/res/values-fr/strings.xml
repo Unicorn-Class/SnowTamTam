@@ -46,4 +46,6 @@
     <string name="darkTheme">Thème Sombre</string>
     <string name="title_activity_settings">Paramètres</string>
     <string name="noGroup">Aucun groupe n\'existe pour l\'instant</string>
+    <string name="noSnowtam">Aucun Snowtam disponible pour cet aéroport</string>
+    <string name="invalidICAO">OACI Erroné</string>
 </resources>

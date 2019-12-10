@@ -127,6 +127,7 @@ public class Search extends AppCompatActivity {
                         card.setVisibility(View.VISIBLE);
                     } catch (Exception e) {
                         card.setVisibility(View.GONE);
+                        searchBar.setError(getString(R.string.invalidICAO));
                     }
                 } else {
                     card.setVisibility(View.GONE);
