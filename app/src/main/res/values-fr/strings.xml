@@ -32,4 +32,17 @@
     <string name="yes">Oui</string>
     <string name="no">Non</string>
     <string name="airportGroupDelete">Supprimer le groupe</string>
+    <string name="tipRawSnowtam">Afficher le Snowtam Codé</string>
+    <string name="help">Aide</string>
+    <string name="help_Date">Date et Heure d\'émission du Snowtam</string>
+    <string name="title_activity_help">Aide</string>
+    <string name="help_Country">Pays</string>
+    <string name="help_Condition">État de la piste (Gauche / Milieu / Droite)</string>
+    <string name="help_Thickness">Épaisseur de la couche obstruante (Gauche / Milieu / Droite)</string>
+    <string name="help_Friction">Coefficient de friction (Gauche / Milieu / Droite)</string>
+    <string name="settings">Paramètres</string>
+    <string name="help_RunwaySelector">Sélection de la piste</string>
+    <string name="style">Apparence</string>
+    <string name="darkTheme">Thème Sombre</string>
+    <string name="title_activity_settings">Paramètres</string>
 </resources>

@@ -8,9 +8,12 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.TypedValue;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -41,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Mapbox.getInstance(this, "pk.eyJ1IjoiYW1hY3oxMyIsImEiOiJjazM3MjNvOWkwN2JjM25saWRkOWJjaWQ3In0.QWLf0Qgc_5m6qEsqZyUNfQ");
+        setTheme(R.style.LightTheme);
         setContentView(R.layout.activity_main);
         FloatingActionButton searchFab = findViewById(R.id.searchFab);
         searchFab.setOnClickListener(new View.OnClickListener() {
@@ -59,6 +63,17 @@ public class MainActivity extends AppCompatActivity {
 
     public void showGroups(final String groups){
         if (groups == null || groups.equals("")) return;
+
+        Resources.Theme theme = this.getTheme();
+
+        TypedValue typedTxtValue = new TypedValue();
+        theme.resolveAttribute(R.attr.textColor, typedTxtValue, true);
+        int txtColor = typedTxtValue.resourceId;
+
+        TypedValue typedBGValue = new TypedValue();
+        theme.resolveAttribute(R.attr.bgColor, typedBGValue, true);
+        int bgColor = typedBGValue.resourceId;
+
         final LinearLayout table = findViewById(R.id.listGroups);
 
         final Context c = this;
@@ -83,6 +98,8 @@ public class MainActivity extends AppCompatActivity {
             int seizeDP = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 16, getResources().getDisplayMetrics());
             clp.setMargins(seizeDP,seizeDP,seizeDP,seizeDP);
             card.setLayoutParams(clp);
+            card.setCardBackgroundColor(getColor(bgColor));
+            //card.setBackgroundColor(R.attr.bgColor);
 
 
             RelativeLayout.LayoutParams tlp = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -90,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
             txt.setLayoutParams(tlp);
             txt.setText(gp);
             txt.setTextSize((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 10, getResources().getDisplayMetrics()));
-            txt.setTextColor(getColor(R.color.colorPrimary));
+            txt.setTextColor(getColor(txtColor));
 
             card.addView(txt);
             table.addView(card);
@@ -136,10 +153,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         }
-
-
-
-
     }
 
 }

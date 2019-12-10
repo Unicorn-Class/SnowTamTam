@@ -10,6 +10,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
@@ -35,7 +37,7 @@ import fr.unicornclass.snowtamtam.model.Snowtam;
 /**
  * A placeholder fragment containing a simple view.
  */
-public class PlaceholderFragment extends Fragment {
+public class ShowAirport extends Fragment {
 
     private MapView mapView;
 
@@ -44,12 +46,12 @@ public class PlaceholderFragment extends Fragment {
     private Airport airport;
     private String snowtam;
 
-    PlaceholderFragment(Airport a) {
+    ShowAirport(Airport a) {
         airport = a;
     }
 
-    public static PlaceholderFragment newInstance(int index, Airport a) {
-        PlaceholderFragment fragment = new PlaceholderFragment(a);
+    public static ShowAirport newInstance(int index, Airport a) {
+        ShowAirport fragment = new ShowAirport(a);
         Bundle bundle = new Bundle();
         bundle.putInt(ARG_SECTION_NUMBER, index);
         fragment.setArguments(bundle);
@@ -83,6 +85,14 @@ public class PlaceholderFragment extends Fragment {
                 Intent i = new Intent(root.getContext(),RawSnowtam.class);
                 i.putExtra("raw",snowtam);
                 startActivity(i);
+            }
+        });
+
+        fab.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                Toast.makeText(v.getContext(),getString(R.string.tipRawSnowtam),Toast.LENGTH_LONG).show();
+                return true;
             }
         });
 

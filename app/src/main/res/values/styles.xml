@@ -22,4 +22,14 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="LightTheme" parent="AppTheme">
+        <item name="textColor">@color/colorPrimary</item>
+        <item name="bgColor">@color/white</item>
+    </style>
+
+    <style name="DarkTheme" parent="AppTheme">
+        <item name="textColor">@color/white</item>
+        <item name="bgColor">@color/black</item>
+    </style>
+
 </resources>

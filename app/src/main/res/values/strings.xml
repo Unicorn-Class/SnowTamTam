@@ -31,4 +31,17 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="airportGroupDelete">Delete Airport Group</string>
+    <string name="tipRawSnowtam">Display Row Snowtam</string>
+    <string name="help">Help</string>
+    <string name="title_activity_help">Help</string>
+    <string name="help_Date">Snowtam Emission Date and Hour</string>
+    <string name="help_Country">Country</string>
+    <string name="help_Condition">Runway State (Left / Middle / Right)</string>
+    <string name="help_Thickness">Snow Thickness (Left / Middle / Right)</string>
+    <string name="help_Friction">Friction Coefficient (Left / Middle / Right)</string>
+    <string name="settings">Settings</string>
+    <string name="help_RunwaySelector">Runway Selection</string>
+    <string name="title_activity_settings">Settings</string>
+    <string name="style">Appearance</string>
+    <string name="darkTheme">Dark Theme</string>
 </resources>

@@ -4,4 +4,7 @@
     <color name="colorPrimaryDark">#1565c0</color>
     <color name="colorAccent">#0288d1</color>
     <color name="white">#ffffff</color>
+    <color name="black">#111111</color>
+    <attr name="textColor" format="color"/>
+    <attr name="bgColor" format="color"/>
 </resources>
