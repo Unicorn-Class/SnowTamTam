@@ -62,7 +62,20 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void showGroups(final String groups){
-        if (groups == null || groups.equals("")) return;
+        final LinearLayout table = findViewById(R.id.listGroups);
+        if (groups == null || groups.equals("")) {
+            TextView txt = new TextView(getApplicationContext());
+            int seizeDP = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 16, getResources().getDisplayMetrics());
+            RelativeLayout.LayoutParams tlp = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            tlp.setMargins(seizeDP,seizeDP,seizeDP,seizeDP);
+            txt.setLayoutParams(tlp);
+            txt.setText(getString(R.string.noGroup));
+            txt.setTextSize((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 8, getResources().getDisplayMetrics()));
+
+            table.addView(txt);
+
+            return;
+        };
 
         Resources.Theme theme = this.getTheme();
 
@@ -74,7 +87,6 @@ public class MainActivity extends AppCompatActivity {
         theme.resolveAttribute(R.attr.bgColor, typedBGValue, true);
         int bgColor = typedBGValue.resourceId;
 
-        final LinearLayout table = findViewById(R.id.listGroups);
 
         final Context c = this;
 
@@ -91,11 +103,11 @@ public class MainActivity extends AppCompatActivity {
 
             CardView card = new CardView(getApplicationContext());
             TextView txt = new TextView(getApplicationContext());
+            int seizeDP = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 16, getResources().getDisplayMetrics());
 
             CardView.LayoutParams clp = new CardView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             clp.height = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 64, getResources().getDisplayMetrics());
             clp.width = ViewGroup.LayoutParams.MATCH_PARENT;
-            int seizeDP = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 16, getResources().getDisplayMetrics());
             clp.setMargins(seizeDP,seizeDP,seizeDP,seizeDP);
             card.setLayoutParams(clp);
             card.setCardBackgroundColor(getColor(bgColor));

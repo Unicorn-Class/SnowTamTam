@@ -44,4 +44,5 @@
     <string name="title_activity_settings">Settings</string>
     <string name="style">Appearance</string>
     <string name="darkTheme">Dark Theme</string>
+    <string name="noGroup">There is no group for the moment</string>
 </resources>
